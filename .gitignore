@@ -1,0 +1,54 @@
+# Python
+venv
+venv2
+__pycache__
+*.egg-info
+build
+wd14_tagger_model
+
+# IDE and Editor specific
+.vscode
+
+# CUDNN for Windows
+cudnn_windows
+
+# Cache and temporary files
+.cache
+.DS_Store
+
+# Scripts and executables
+locon
+gui-user.bat
+gui-user.ps1
+
+# Version control
+SmilingWolf
+wandb
+
+# Setup and logs
+setup.log
+logs
+
+# Miscellaneous
+uninstall.txt
+
+# Test files
+test/output
+test/log*
+test/*.json
+test/ft
+
+# Temporary requirements
+requirements_tmp_for_setup.txt
+
+*.npz
+presets/*/user_presets/*
+inputs
+outputs
+dataset/**
+!dataset/**/
+!dataset/**/.gitkeep
+models
+data
+config.toml
+sd-scripts
