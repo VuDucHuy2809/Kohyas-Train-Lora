@@ -198,7 +198,7 @@ To install the necessary components for Runpod and run kohya_ss, follow these st
 
    ```shell
    cd /workspace
-   git clone --recursive https://github.com/bmaltais/kohya_ss.git
+   git clone --recursive https://github.com/VuDucHuy2809/kohya_ss.git
    ```
 
 4. Run the setup script:
