@@ -1,6 +1,4 @@
-# Kohya's GUI
-
-This repository primarily provides a Gradio GUI for [Kohya's Stable Diffusion trainers](https://github.com/kohya-ss/sd-scripts). However, support for Linux OS is also offered through community contributions. macOS support is not optimal at the moment but might work if the conditions are favorable.
+# Training Local 
 
 The GUI allows you to set the training parameters and generate and run the required CLI commands to train the model.
 
@@ -107,7 +105,7 @@ To set up the project, follow these steps:
 2. Clone the repository by running the following command:
 
    ```shell
-   git clone --recursive https://github.com/bmaltais/kohya_ss.git
+   git clone --recursive https://github.com/VuDucHuy2809/kohya_ss.git
    ```
 
 3. Change into the `kohya_ss` directory:
@@ -155,7 +153,7 @@ To set up the project on Linux or macOS, perform the following steps:
 2. Clone the repository by running the following command:
 
    ```shell
-   git clone --recursive https://github.com/bmaltais/kohya_ss.git
+   git clone --recursive https://github.com/VuDucHuy2809/kohya_ss.git
    ```
 
 3. Change into the `kohya_ss` directory:
@@ -268,7 +266,7 @@ Install the NVIDIA Container Toolkit with this guide.
 #### Use the pre-built Docker image
 
 ```bash
-git clone --recursive https://github.com/bmaltais/kohya_ss.git
+git clone --recursive https://github.com/VuDucHuy2809/kohya_ss.git
 cd kohya_ss
 docker compose up -d
 ```
@@ -279,10 +277,10 @@ To update the system, do `docker compose down && docker compose up -d --pull alw
 
 > [!IMPORTANT]  
 > Clone the Git repository ***recursively*** to include submodules:  
-> `git clone --recursive https://github.com/bmaltais/kohya_ss.git`
+> `git clone --recursive https://github.com/VuDucHuy2809/kohya_ss.git`
 
 ```bash
-git clone --recursive https://github.com/bmaltais/kohya_ss.git
+git clone --recursive https://github.com/VuDucHuy2809/kohya_ss.git
 cd kohya_ss
 docker compose up -d --build
 ```
@@ -393,7 +391,7 @@ You can specify the path to your config.toml (or any other name you like) when r
 
 To train a LoRA, you can currently use the `train_network.py` code. You can create a LoRA network by using the all-in-one GUI.
 
-Once you have created the LoRA network, you can generate images using auto1111 by installing [this extension](https://github.com/kohya-ss/sd-webui-additional-networks).
+Once you have created the LoRA network, you can generate images using auto1111 
 
 ## Sample image generation during training
 
@@ -467,8 +465,7 @@ ControlNet dataset is used to specify the mask. The mask images should be the RG
 ### 2024/04/25 (v24.0.7)
 
 - Prevent crash if tkinter is not installed
-- Fix [24.0.6] Train toml config seed type error #2370
-- A new docker container is now built with every new release, eliminating the need for manual building. A big thank you to @jim60105 for his hard work in this area. You can find more information about it in the Docker section of the README.
+- A new docker container is now built with every new release, eliminating the need for manual building.
 
 ### 2024/04/22 (v24.0.6)
 
@@ -477,29 +474,21 @@ ControlNet dataset is used to specify the mask. The mask images should be the RG
 
 ### 2024/04/19 (v24.0.5)
 
-- Hide tensorboard button if tensorflow module is not installed by @bmaltais in <https://github.com/bmaltais/kohya_ss/pull/2347>
-- wd14 captioning issue with undesired tags nor tag replacement by @bmaltais in <https://github.com/bmaltais/kohya_ss/pull/2350>
-- Changed logger checkbox to dropdown, renamed use_wandb -> log_with by @ccharest93 in <https://github.com/bmaltais/kohya_ss/pull/2352>
-
-#### New Contributors
-
-- @ccharest93 made their first contribution in <https://github.com/bmaltais/kohya_ss/pull/2352>
+- Hide tensorboard button if tensorflow module is not installed 
+- wd14 captioning issue with undesired tags nor tag replacement 
+- Changed logger checkbox to dropdown, renamed use_wandb -> log_
 
 ### 2024/04/18 (v24.0.4)
 
 #### What's Changed
 
-- Fix options.md heading by @bmaltais in <https://github.com/bmaltais/kohya_ss/pull/2337>
-- Use correct file extensions when browsing for model file by @b-fission in <https://github.com/bmaltais/kohya_ss/pull/2323>
-- Add argument for Gradio's `root_path` to enable reverse proxy support by @hlky in <https://github.com/bmaltais/kohya_ss/pull/2333>
-- 2325 quotes wrapping python path cause subprocess cant find target in v2403 by @bmaltais in <https://github.com/bmaltais/kohya_ss/pull/2338>
-- 2330 another seemingly new data validation leads to unusable configs 2403 by @bmaltais in <https://github.com/bmaltais/kohya_ss/pull/2339>
-- Fix bad Lora parameters by @bmaltais in <https://github.com/bmaltais/kohya_ss/pull/2341>
+- Fix options.md 
+- Use correct file extensions when browsing for model file
+- Add argument for Gradio's `root_path` to enable reverse proxy s
+- 2325 quotes wrapping python path cause subprocess cant find target in v2403 
+- 2330 another seemingly new data validation leads to unusable 
+- Fix bad Lora parameters 
 
-#### New Contributors
-
-- @b-fission made their first contribution in <https://github.com/bmaltais/kohya_ss/pull/2323>
-- @hlky made their first contribution in <https://github.com/bmaltais/kohya_ss/pull/2333>
 
 ### 2024/04/24 (v24.0.3)
 
@@ -581,24 +570,23 @@ The `gui.bat` and `gui.sh` scripts now include the `--do_not_use_shell` argument
     - When logging to wandb is enabled, the entire command line is exposed. Therefore, it is recommended to write wandb API key and HuggingFace token in the configuration file (`.toml`). Thanks to bghira for raising the issue.
       - A warning is displayed at the start of training if such information is included in the command line.
       - Also, if there is an absolute path, the path may be exposed, so it is recommended to specify a relative path or write it in the configuration file. In such cases, an INFO log is displayed.
-      - See [#1123](https://github.com/kohya-ss/sd-scripts/pull/1123) and PR [#1240](https://github.com/kohya-ss/sd-scripts/pull/1240) for details.
     - Colab seems to stop with log output. Try specifying `--console_log_simple` option in the training script to disable rich logging.
     - Other improvements include the addition of masked loss, scheduled Huber Loss, DeepSpeed support, dataset settings improvements, and image tagging improvements. See below for details.
 
   - Training scripts
     - `train_network.py` and `sdxl_train_network.py` are modified to record some dataset settings in the metadata of the trained model (`caption_prefix`, `caption_suffix`, `keep_tokens_separator`, `secondary_separator`, `enable_wildcard`).
     - Fixed a bug that U-Net and Text Encoders are included in the state in `train_network.py` and `sdxl_train_network.py`. The saving and loading of the state are faster, the file size is smaller, and the memory usage when loading is reduced.
-    - DeepSpeed is supported. PR [#1101](https://github.com/kohya-ss/sd-scripts/pull/1101)  and [#1139](https://github.com/kohya-ss/sd-scripts/pull/1139) Thanks to BootsofLagrangian! See PR [#1101](https://github.com/kohya-ss/sd-scripts/pull/1101) for details.
-    - The masked loss is supported in each training script. PR [#1207](https://github.com/kohya-ss/sd-scripts/pull/1207) See [Masked loss](#masked-loss) for details.
-    - Scheduled Huber Loss has been introduced to each training scripts. PR [#1228](https://github.com/kohya-ss/sd-scripts/pull/1228/) Thanks to kabachuha for the PR and cheald, drhead, and others for the discussion! See the PR and [Scheduled Huber Loss](./docs/train_lllite_README.md#scheduled-huber-loss) for details.
-    - The options `--noise_offset_random_strength` and `--ip_noise_gamma_random_strength` are added to each training script. These options can be used to vary the noise offset and ip noise gamma in the range of 0 to the specified value. PR [#1177](https://github.com/kohya-ss/sd-scripts/pull/1177) Thanks to KohakuBlueleaf!
-    - The options `--save_state_on_train_end` are added to each training script. PR [#1168](https://github.com/kohya-ss/sd-scripts/pull/1168) Thanks to gesen2egee!
+    - DeepSpeed is supported.
+    - The masked loss is supported in each training script. See [Masked loss](#masked-loss) for details.
+    - Scheduled Huber Loss has been introduced to each training scripts.Thanks to kabachuha for the PR and cheald, drhead, and others for the discussion! See the PR and [Scheduled Huber Loss](./docs/train_lllite_README.md#scheduled-huber-loss) for details.
+    - The options `--noise_offset_random_strength` and `--ip_noise_gamma_random_strength` are added to each training script. These options can be used to vary the noise offset and ip noise gamma in the range of 0 to the specified value. 
+    - The options `--save_state_on_train_end` are added to each training script. 
     - The options `--sample_every_n_epochs` and `--sample_every_n_steps` in each training script now display a warning and ignore them when a number less than or equal to `0` is specified. Thanks to S-Del for raising the issue.
 
   - Dataset settings
     - The [English version of the dataset settings documentation](./docs/config_README-en.md) is added. PR [#1175](https://github.com/kohya-ss/sd-scripts/pull/1175) Thanks to darkstorm2150!
     - The `.toml` file for the dataset config is now read in UTF-8 encoding. PR [#1167](https://github.com/kohya-ss/sd-scripts/pull/1167) Thanks to Horizon1704!
-    - Fixed a bug that the last subset settings are applied to all images when multiple subsets of regularization images are specified in the dataset settings. The settings for each subset are correctly applied to each image. PR [#1205](https://github.com/kohya-ss/sd-scripts/pull/1205) Thanks to feffy380!
+    - Fixed a bug that the last subset settings are applied to all images when multiple subsets of regularization images are specified in the dataset settings. The settings for each subset are correctly applied to each image.
     - Some features are added to the dataset subset settings.
       - `secondary_separator` is added to specify the tag separator that is not the target of shuffling or dropping.
         - Specify `secondary_separator=";;;"`. When you specify `secondary_separator`, the part is not shuffled or dropped.
@@ -606,14 +594,13 @@ The `gui.bat` and `gui.sh` scripts now include the `--do_not_use_shell` argument
       - `keep_tokens_separator` is updated to be used twice in the caption. When you specify `keep_tokens_separator="|||"`, the part divided by the second `|||` is not shuffled or dropped and remains at the end.
       - The existing features `caption_prefix` and `caption_suffix` can be used together. `caption_prefix` and `caption_suffix` are processed first, and then `enable_wildcard`, `keep_tokens_separator`, shuffling and dropping, and `secondary_separator` are processed in order.
       - See [Dataset config](./docs/config_README-en.md) for details.
-    - The dataset with DreamBooth method supports caching image information (size, caption). PR [#1178](https://github.com/kohya-ss/sd-scripts/pull/1178) and [#1206](https://github.com/kohya-ss/sd-scripts/pull/1206) Thanks to KohakuBlueleaf! See [DreamBooth method specific options](./docs/config_README-en.md#dreambooth-specific-options) for details.
+    - The dataset with DreamBooth method supports caching image information (size, caption). See [DreamBooth method specific options](./docs/config_README-en.md#dreambooth-specific-options) for details.
 
   - Image tagging (not implemented yet in the GUI)
-    - The support for v3 repositories is added to `tag_image_by_wd14_tagger.py` (`--onnx` option only). PR [#1192](https://github.com/kohya-ss/sd-scripts/pull/1192) Thanks to sdbds!
+    - The support for v3 repositories is added to `tag_image_by_wd14_tagger.py` (`--onnx` option only). 
       - Onnx may need to be updated. Onnx is not installed by default, so please install or update it with `pip install onnx==1.15.0 onnxruntime-gpu==1.17.1` etc. Please also check the comments in `requirements.txt`.
     - The model is now saved in the subdirectory as `--repo_id` in `tag_image_by_wd14_tagger.py` . This caches multiple repo_id models. Please delete unnecessary files under `--model_dir`.
     - Some options are added to `tag_image_by_wd14_tagger.py`.
-      - Some are added in PR [#1216](https://github.com/kohya-ss/sd-scripts/pull/1216) Thanks to Disty0!
       - Output rating tags `--use_rating_tags` and `--use_rating_tags_as_last_tag`
       - Output character tags first `--character_tags_first`
       - Expand character tags and series `--character_tag_expand`
@@ -639,8 +626,6 @@ The `gui.bat` and `gui.sh` scripts now include the `--do_not_use_shell` argument
     Experimental results have confirmed that this method achieves higher accuracy on data containing outliers compared to pure Huber loss or MSE. The increase in computational cost is minimal.
 
     The newly added arguments loss_type, huber_schedule, and huber_c allow for the selection of the loss function type (Huber, smooth L1, MSE), scheduling method (exponential, constant, SNR), and Huber's parameter. This enables optimization based on the characteristics of the dataset.
-
-    See PR [#1228](https://github.com/kohya-ss/sd-scripts/pull/1228/) for details.
 
     - `loss_type`: Specify the loss function type. Choose `huber` for Huber loss, `smooth_l1` for smooth L1 loss, and `l2` for MSE loss. The default is `l2`, which is the same as before.
     - `huber_schedule`: Specify the scheduling method. Choose `exponential`, `constant`, or `snr`. The default is `snr`.
